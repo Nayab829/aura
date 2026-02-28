@@ -12,6 +12,7 @@ import CartSidebar from "@/components/CartSidebar";
 import ProductCard from "@/components/ProductCard";
 import data from "@/assets/data.json";
 import { Product } from "@/types";
+import AnnouncementBar from "@/components/AnnouncementBar";
 
 export default function CategoryPage() {
     const params = useParams();
@@ -65,6 +66,7 @@ export default function CategoryPage() {
 
             {/* Dark background just for header block */}
             <div className="bg-black/95">
+                <AnnouncementBar />
                 <Header
                     isMobileNavOpen={isMobileNavOpen}
                     setIsMobileNavOpen={setIsMobileNavOpen}
@@ -74,7 +76,7 @@ export default function CategoryPage() {
             </div>
 
             {/* Category Hero / Banner */}
-            <section className="relative w-full h-[300px] md:h-[420px] bg-black text-white flex items-center justify-center overflow-hidden">
+            <section className="relative w-full h-[350px] md:h-[420px] bg-black text-white flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <Image
                         src={category.image}

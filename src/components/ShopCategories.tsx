@@ -19,21 +19,27 @@ export default function ShopCategories() {
             <Link
               key={category.id}
               href={category.link}
-              className="relative block w-[50vw] sm:w-[45vw] md:w-auto shrink-0 aspect-[4/4] rounded-xl overflow-hidden transition-all duration-500  snap-center"
+              className="group flex flex-col items-center w-[60vw] sm:w-[45vw] md:w-auto shrink-0 transition-all duration-500 snap-center"
             >
-
-
-              {/* Image Container */}
-              <div className="relative w-full h-full ">
+              {/* Image Container with Hover Effect */}
+              <div className="relative w-full aspect-square mb-5 overflow-hidden rounded-full shadow-sm group-hover:shadow-xl group-hover:border-[#fdb61b]/30 transition-all duration-500 rounded-full">
                 <Image
                   src={category.image}
                   alt={category.name}
                   fill
-                  className="object-cover object-top p-4 group-hover:scale-110 group-hover:-translate-y-2 transition-transform duration-700 pointer-events-none rounded-full"
+                  className="object-cover object-top p-4 group-hover:scale-110 transition-transform duration-700 ease-out rounded-full"
                 />
+                {/* Subtle overlay on hover */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500"></div>
               </div>
 
-
+              {/* Category Name */}
+              <div className="text-center">
+                <h3 className="font-sans text-xs md:text-sm font-extrabold text-gray-900 tracking-[0.15em] uppercase group-hover:text-[#fdb61b] transition-colors duration-300">
+                  {category.name}
+                </h3>
+                <div className="w-0 group-hover:w-full h-[1px] bg-[#fdb61b] mx-auto mt-1 transition-all duration-500"></div>
+              </div>
             </Link>
           ))}
         </div>

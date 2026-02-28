@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,6 +13,9 @@ import ProductCard from "@/components/ProductCard";
 import data from "@/assets/data.json";
 
 export default function ProductsPage() {
+    const searchParams = useSearchParams();
+    const query = searchParams.get("q");
+
     const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [filterCategory, setFilterCategory] = useState("all");
@@ -26,6 +30,16 @@ export default function ProductsPage() {
     }, []);
 
     let filteredProducts = [...data.products];
+
+    // Apply search query filter if it exists
+    if (query) {
+        filteredProducts = filteredProducts.filter(p =>
+            p.name.toLowerCase().includes(query.toLowerCase()) ||
+            p.category.toLowerCase().includes(query.toLowerCase()) ||
+            p.notes?.toLowerCase().includes(query.toLowerCase())
+        );
+    }
+
     if (filterCategory !== "all") {
         filteredProducts = filteredProducts.filter(p => p.category === filterCategory);
     }
@@ -95,7 +109,9 @@ export default function ProductsPage() {
                 <div className="max-w-[1400px] mx-auto px-4 lg:px-6">
                     <div className="mb-10 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
                         <div>
-                            <h2 className="text-2xl md:text-3xl font-bold mb-2">Showing {filteredProducts.length} Products</h2>
+                            <h2 className="text-2xl md:text-3xl font-bold mb-2">
+                                {query ? `Search results for "${query}"` : `Showing all ${filteredProducts.length} Products`}
+                            </h2>
                             <div className="w-12 h-1 bg-[#fdb61b]"></div>
                         </div>
 

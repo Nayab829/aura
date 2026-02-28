@@ -43,7 +43,7 @@ export default function HeroSlider() {
 
 
   return (
-    <div className="relative w-full h-[360px] lg:h-[750px] overflow-hidden bg-[#0d0d0d]">
+    <div className="relative w-full h-[350px] lg:h-[750px] overflow-hidden bg-[#0d0d0d] mt-[89px]">
 
       {/* Background Images — crossfade */}
       {slides.map((s, i) => (
@@ -56,7 +56,7 @@ export default function HeroSlider() {
             alt="Banner Image"
             fill
             priority={i === 0}
-            className="cover object-fit"
+            className=" object-fit "
           />
         </div>
       ))}

@@ -1,23 +1,39 @@
-"use client";
-
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, User, ShoppingBag, ChevronDown, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import data from "@/assets/data.json";
-import { HeaderProps } from "@/types";
+import { HeaderProps, Product } from "@/types";
 
 export default function Header({
   isMobileNavOpen,
   setIsMobileNavOpen,
 }: HeaderProps) {
   const { cartCount, openCart } = useCart();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+
+  useEffect(() => {
+    if (searchQuery.trim().length > 1) {
+      const filtered = data.products.filter(p =>
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.notes?.toLowerCase().includes(searchQuery.toLowerCase())
+      ).slice(0, 5);
+      setSearchResults(filtered);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchQuery]);
+
   return (
     <>
-      <header className="absolute top-[45px] sm:top-[45px] left-0 right-0 z-[100] bg-transparent font-sans bg-black">
+      <header className="absolute top-[45px] sm:top-[45px] left-0 right-0 z-[100] bg-transparent font-sans">
 
         {/* Row 1: Logo & Actions (Dark background) */}
-        <div className="bg-black/95 backdrop-blur-md border-b border-white/10 relative z-20">
+        <div className="bg-black/80 backdrop-blur-sm border-b border-white/10 relative z-20">
           <div className="max-w-[1400px] mx-auto px-4 lg:px-6 py-2">
             <div className="flex items-center justify-between h-[80px]">
 
@@ -33,12 +49,54 @@ export default function Header({
                   <div className="relative w-full text-white">
                     <input
                       type="text"
-                      placeholder="Search"
-                      className="w-full bg-white/5 text-white text-sm h-[36px] pl-4 pr-10 rounded-full focus:outline-none placeholder-gray-500 border border-white/10"
+                      placeholder="Search for scents..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onFocus={() => setIsSearchFocused(true)}
+                      onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+                      className="w-full bg-white/5 text-white text-sm h-[36px] pl-4 pr-10 rounded-full focus:outline-none placeholder-gray-500 border border-white/10 focus:border-[#fdb61b]/50 transition-all"
                     />
                     <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#fdb61b] transition-colors">
                       <Search size={18} strokeWidth={2} />
                     </button>
+
+                    {/* Search Results Dropdown */}
+                    {isSearchFocused && searchQuery.length > 1 && (
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-2xl overflow-hidden z-[1000] border border-gray-100 animate-in fade-in slide-in-from-top-2 duration-300">
+                        {searchResults.length > 0 ? (
+                          <div className="p-2">
+                            <p className="text-[10px] uppercase tracking-widest font-bold text-gray-400 px-3 py-2">Products</p>
+                            {searchResults.map(product => (
+                              <Link
+                                key={product.id}
+                                href={`/product/${product.id}`}
+                                className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors group"
+                                onClick={() => setSearchQuery("")}
+                              >
+                                <div className="relative w-12 h-12 rounded-md overflow-hidden bg-gray-100 shrink-0">
+                                  <Image src={product.image} alt={product.name} fill className="object-cover" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-sm font-bold text-gray-900 truncate group-hover:text-[#fdb61b] transition-colors">{product.name}</p>
+                                  <p className="text-xs text-gray-500 font-medium">PKR {product.price.toLocaleString()}</p>
+                                </div>
+                              </Link>
+                            ))}
+                            <Link
+                              href={`/products?q=${searchQuery}`}
+                              className="block text-center py-2 text-xs font-bold text-[#fdb61b] border-t border-gray-50 mt-1 hover:bg-gray-50 bg-[#fdb61b]/5 transition-colors"
+                              onClick={() => setSearchQuery("")}
+                            >
+                              See all results
+                            </Link>
+                          </div>
+                        ) : (
+                          <div className="p-8 text-center">
+                            <p className="text-sm text-gray-500 font-medium italic">No scents found for "{searchQuery}"</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -173,28 +231,77 @@ export default function Header({
 
       </header>
 
-      {/* ========== MOBILE NAV - Converted to Tailwind ========== */}
+      {/* ========== MOBILE NAV ========== */}
       <div
-        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-[150] transition-opacity duration-300 ${isMobileNavOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+        className={`fixed inset-0 bg-black/80 backdrop-blur-sm z-[150] transition-opacity duration-300 ${isMobileNavOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
         onClick={() => setIsMobileNavOpen(false)}
       ></div>
 
       <nav className={`fixed top-0 bottom-0 left-0 w-[300px] bg-white z-[200] border-r border-gray-200 p-6 flex flex-col transition-transform duration-300 ease-out font-sans ${isMobileNavOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <button className="absolute top-6 right-6 text-gray-500 hover:text-[#fdb61b] transition-colors" onClick={() => setIsMobileNavOpen(false)}>
-          <X size={24} />
-        </button>
-        <div className="text-[#fdb61b] font-sans text-2xl font-bold uppercase tracking-widest mb-10">Aura Sentiments</div>
-        <ul className="flex flex-col gap-4 text-gray-900 uppercase tracking-widest text-xs font-semibold">
-          <li><Link href="/" className="block py-2 border-b border-gray-100 hover:text-[#fdb61b] transition-colors" onClick={() => setIsMobileNavOpen(false)}>Home</Link></li>
+        <div className="flex items-center justify-between mb-8">
+          <div className="text-[#fdb61b] font-sans text-xl font-bold uppercase tracking-widest">Aura</div>
+          <button className="text-gray-900 hover:text-[#fdb61b] transition-colors" onClick={() => setIsMobileNavOpen(false)}>
+            <X size={24} />
+          </button>
+        </div>
+
+        {/* Mobile Search */}
+        <div className="mb-8 relative">
+          <input
+            type="text"
+            placeholder="Search scents..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-gray-50 text-gray-900 text-sm h-[44px] pl-4 pr-10 rounded-lg focus:outline-none border border-gray-100 focus:border-[#fdb61b] transition-all"
+          />
+          <Search size={18} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" />
+
+          {searchQuery.length > 1 && (
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-100 max-h-[300px] overflow-y-auto z-[250]">
+              {searchResults.length > 0 ? (
+                <div className="p-2">
+                  {searchResults.map(product => (
+                    <Link
+                      key={product.id}
+                      href={`/product/${product.id}`}
+                      className="flex items-center gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors border-b border-gray-50 last:border-0"
+                      onClick={() => {
+                        setIsMobileNavOpen(false);
+                        setSearchQuery("");
+                      }}
+                    >
+                      <div className="relative w-10 h-10 rounded bg-gray-100 overflow-hidden shrink-0">
+                        <Image src={product.image} alt={product.name} fill className="object-cover" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-bold text-gray-900 truncate">{product.name}</p>
+                        <p className="text-[10px] text-gray-500 font-medium">PKR {product.price.toLocaleString()}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-4 text-center">
+                  <p className="text-sm text-gray-400 italic">No results</p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        <ul className="flex flex-col gap-4 text-gray-900 uppercase tracking-widest text-xs font-semibold overflow-y-auto pr-2">
+          <li><Link href="/" className="block py-3 border-b border-gray-50 hover:text-[#fdb61b] transition-colors" onClick={() => setIsMobileNavOpen(false)}>Home</Link></li>
+          <li><Link href="/products" className="block py-3 border-b border-gray-50 hover:text-[#fdb61b] transition-colors" onClick={() => setIsMobileNavOpen(false)}>Shop All</Link></li>
           {data.categories.map((category) => (
             <li key={category.id}>
-              <Link href={category.link} className="block py-2 border-b border-gray-100 hover:text-[#fdb61b] transition-colors" onClick={() => setIsMobileNavOpen(false)}>
+              <Link href={category.link} className="block py-3 border-b border-gray-50 hover:text-[#fdb61b] transition-colors" onClick={() => setIsMobileNavOpen(false)}>
                 {category.name}
               </Link>
             </li>
           ))}
         </ul>
-        <div className="mt-auto pt-6 border-t border-gray-100 text-gray-500 text-xs">
+
+        <div className="mt-auto pt-6 border-t border-gray-100 text-gray-500 text-[10px] tracking-wider font-bold uppercase">
           <p className="mb-2">📞 +92 300 123 4567</p>
           <p>✉ info@aurasentiments.com</p>
         </div>
