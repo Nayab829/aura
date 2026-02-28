@@ -67,7 +67,7 @@ export default function CheckoutPage() {
         const whatsappMessage = `🔔 *New Order Received!*\n\n*Customer:* ${contactInfo.firstName as string} ${contactInfo.lastName as string}\n*Phone:* ${contactInfo.phone as string}\n*Address:* ${contactInfo.address as string}, ${contactInfo.city as string}\n\n*Items:*\n${itemsList}\n\n*Total:* PKR ${finalTotal.toLocaleString()}`;
 
         // Use the environment variable for the WhatsApp number (fallback provided just in case)
-        const adminWhatsAppNumber = process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_NUMBER || "923106647623";
+        const adminWhatsAppNumber = process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_NUMBER || "923259976577";
         const whatsappUrl = `https://wa.me/${adminWhatsAppNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
         // Pass demo URLs via query string for demonstration
