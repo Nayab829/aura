@@ -1,0 +1,194 @@
+{
+  "categories": [
+    {
+      "id": "men",
+      "name": "Men Fragrances",
+      "image": "/images/categories/Men Fragrances Profile.jpg",
+      "link": "/category/men"
+    },
+    {
+      "id": "women",
+      "name": "Women Fragrances",
+      "image": "/images/categories/Women Fragrances Profile.jpg",
+      "link": "/category/women"
+    },
+    {
+      "id": "unisex",
+      "name": "Unisex Fragrances",
+      "image": "/images/categories/Unisex Fragrances Profile.jpg",
+      "link": "/category/unisex"
+    },
+    {
+      "id": "premium",
+      "name": "Premium Attars",
+      "image": "/images/categories/Premium Attars Profile.jpg",
+      "link": "/category/premium"
+    },
+    {
+      "id": "testers",
+      "name": "Aura Testers",
+      "image": "/images/categories/Aura Testers Profile.jpg",
+      "link": "/category/testers"
+    }
+  ],
+  "products": [
+    {
+      "id": "p-aura-sports",
+      "name": "Aura Sports",
+      "price": 1500,
+      "originalPrice": 2500,
+      "image": "/images/products/AURA SPORTS Main.jpg",
+      "notes": "Top: Citrus · Heart: Aquatic",
+      "rating": 5,
+      "reviews": 120,
+      "badge": "Best Seller",
+      "badgeType": "bestseller",
+      "category": "men"
+    },
+    {
+      "id": "p-after-12",
+      "name": "After 12",
+      "price": 2200,
+      "originalPrice": 3500,
+      "image": "/images/products/After 12 Main.jpg",
+      "notes": "Top: Vanilla · Heart: Musk",
+      "rating": 5,
+      "reviews": 85,
+      "badge": "SALE",
+      "badgeType": "sale",
+      "category": "premium"
+    },
+    {
+      "id": "p-aura-black",
+      "name": "Aura Black",
+      "price": 1800,
+      "originalPrice": 2800,
+      "image": "/images/products/Aura Black Main.jpg",
+      "notes": "Top: Leather · Heart: Wood",
+      "rating": 4,
+      "reviews": 210,
+      "badge": "Popular",
+      "badgeType": "new",
+      "category": "men"
+    },
+    {
+      "id": "p-floral-vibes",
+      "name": "Floral Vibes",
+      "price": 1600,
+      "originalPrice": 2600,
+      "image": "/images/products/Floral vibes Main.jpg",
+      "notes": "Top: Rose · Heart: Jasmine",
+      "rating": 5,
+      "reviews": 150,
+      "badge": "New",
+      "badgeType": "new",
+      "category": "women"
+    },
+    {
+      "id": "p-tester-pack",
+      "name": "9 Testers Pack",
+      "price": 2999,
+      "originalPrice": 4500,
+      "image": "/images/products/9 Testers Main.jpg",
+      "notes": "Experience all our signature scents",
+      "rating": 5,
+      "reviews": 340,
+      "badge": "Limited",
+      "badgeType": "sale",
+      "category": "testers"
+    },
+    {
+      "id": "p-aura-exilir",
+      "name": "Aura Exilir",
+      "price": 2000,
+      "originalPrice": 3000,
+      "image": "/images/products/Aura exilir Main.jpg",
+      "notes": "Top: Floral · Heart: Sweet",
+      "rating": 4,
+      "reviews": 90,
+      "badge": "New",
+      "badgeType": "new",
+      "category": "women"
+    },
+    {
+      "id": "p-oscar",
+      "name": "OSCAR",
+      "price": 2500,
+      "originalPrice": 3800,
+      "image": "/images/products/OSCAR Main.jpg",
+      "notes": "Top: Spicy · Heart: Woody",
+      "rating": 5,
+      "reviews": 115,
+      "badge": "Popular",
+      "badgeType": "bestseller",
+      "category": "men"
+    },
+    {
+      "id": "p-oud-fantasy",
+      "name": "Oud Fantasy",
+      "price": 3200,
+      "originalPrice": 4500,
+      "image": "/images/products/Oud Fantasy Main.jpg",
+      "notes": "Top: Oud · Heart: Rose",
+      "rating": 5,
+      "reviews": 220,
+      "badge": "Premium",
+      "badgeType": "bestseller",
+      "category": "premium"
+    },
+    {
+      "id": "p-out-of-universe",
+      "name": "Out of Universe",
+      "price": 2800,
+      "originalPrice": 4000,
+      "image": "/images/products/Out of Universe Main.jpg",
+      "notes": "Top: Cosmic · Heart: Amber",
+      "rating": 4,
+      "reviews": 60,
+      "badge": "Exclusive",
+      "badgeType": "new",
+      "category": "premium"
+    },
+    {
+      "id": "p-ronak-e-mahfil",
+      "name": "Ronak-e-Mahfil",
+      "price": 2400,
+      "originalPrice": 3200,
+      "image": "/images/products/Ronak e mahfil Main.jpg",
+      "notes": "Top: Saffron · Heart: Sandalwood",
+      "rating": 5,
+      "reviews": 180,
+      "badge": "Classic",
+      "badgeType": "bestseller",
+      "category": "unisex"
+    },
+    {
+      "id": "p-tester-single",
+      "name": "Aura Tester Vial",
+      "price": 400,
+      "originalPrice": 600,
+      "image": "/images/products/Tester Main.jpg",
+      "notes": "Discover your signature scent",
+      "rating": 4,
+      "reviews": 45,
+      "category": "testers"
+    }
+  ],
+  "banners": [
+    {
+      "id": "banner-1",
+      "image": "/images/banners/Wider Image 1.png",
+      "link": "#"
+    },
+    {
+      "id": "banner-2",
+      "image": "/images/banners/Wider Image 2.jpg",
+      "link": "#"
+    },
+    {
+      "id": "banner-3",
+      "image": "/images/banners/Wider Image 3.jpg",
+      "link": "#"
+    }
+  ]
+}
