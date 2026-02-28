@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
@@ -12,7 +12,7 @@ import CartSidebar from "@/components/CartSidebar";
 import ProductCard from "@/components/ProductCard";
 import data from "@/assets/data.json";
 
-export default function ProductsPage() {
+function ProductsContent() {
     const searchParams = useSearchParams();
     const query = searchParams.get("q");
 
@@ -179,5 +179,20 @@ export default function ProductsPage() {
             <Footer />
             <CartSidebar />
         </div>
+    );
+}
+
+export default function ProductsPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-white text-gray-900 flex items-center justify-center font-sans">
+                <div className="text-center">
+                    <div className="w-16 h-16 border-4 border-[#fdb61b] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <p className="text-gray-500 font-semibold tracking-widest uppercase text-sm">Loading Collection...</p>
+                </div>
+            </div>
+        }>
+            <ProductsContent />
+        </Suspense>
     );
 }
