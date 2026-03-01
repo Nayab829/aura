@@ -26,7 +26,7 @@ export default function CheckoutPage() {
   }, []);
 
   const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  const shipping = total > 0 ? 250 : 0; // Flat PK$250 shipping
+  const shipping = total > 0 ? 99 : 0; // Flat PKR 99 shipping
   const finalTotal = total + shipping;
 
   const handleCheckout = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -67,7 +67,7 @@ export default function CheckoutPage() {
         const whatsappMessage = `🔔 *New Order Received!*\n\n*Customer:* ${contactInfo.firstName as string} ${contactInfo.lastName as string}\n*Phone:* ${contactInfo.phone as string}\n*Address:* ${contactInfo.address as string}, ${contactInfo.city as string}\n\n*Items:*\n${itemsList}\n\n*Total:* PKR ${finalTotal.toLocaleString()}`;
 
         // Use the environment variable for the WhatsApp number (fallback provided just in case)
-        const adminWhatsAppNumber = process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_NUMBER || "923259976577";
+        const adminWhatsAppNumber = process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_NUMBER || "923360303003";
         const whatsappUrl = `https://wa.me/${adminWhatsAppNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
         // Pass demo URLs via query string for demonstration
@@ -91,7 +91,7 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col">
 
-      {/* Mini Checkout Header */}
+      {/* Mini 6543 Header */}
       <header className="bg-white border-b border-gray-200 py-6">
         <div className="max-w-[1200px] mx-auto px-4 lg:px-6 flex items-center justify-between">
           <Link href="/" className="text-gray-900 font-sans font-bold text-xl tracking-widest uppercase">

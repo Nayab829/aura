@@ -302,8 +302,8 @@ export default function Header({
         </ul>
 
         <div className="mt-auto pt-6 border-t border-gray-100 text-gray-500 text-[10px] tracking-wider font-bold uppercase">
-          <p className="mb-2">📞 +92 300 123 4567</p>
-          <p>✉ info@aurasentiments.com</p>
+          <p className="mb-2">📞 +{process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_NUMBER || "923360303003"}</p>
+          <p>✉ {process.env.NEXT_PUBLIC_ADMIN_EMAIL || "aurasentiments@gmail.com"}</p>
         </div>
       </nav>
     </>

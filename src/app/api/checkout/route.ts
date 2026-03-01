@@ -64,7 +64,7 @@ export async function POST(req: Request) {
     // Send admin notification
     let infoAdmin = await transporter.sendMail({
       from: '"Store System" <system@aurasentiments.com>',
-      to: process.env.ADMIN_EMAIL || "ihtizazahmad2002@gmail.com",
+      to: process.env.ADMIN_EMAIL || "aurasentiments@gmail.com",
       subject: `New Order from ${contactInfo.firstName} - Aura Sentiments`,
       html: adminEmailHtml,
     });

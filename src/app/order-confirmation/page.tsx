@@ -1,15 +1,17 @@
 "use client";
 
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { CheckCircle } from "lucide-react";
-import { Suspense } from "react";
 
 function OrderConfirmationContent() {
     const searchParams = useSearchParams();
     const userUrl = searchParams.get("userEmailUrl");
     const adminUrl = searchParams.get("adminEmailUrl");
     const whatsappUrl = searchParams.get("whatsappUrl");
+
+
 
     return (
         <div className="bg-white max-w-lg w-full rounded-2xl p-10 shadow-lg text-center border border-gray-100">
@@ -25,6 +27,8 @@ function OrderConfirmationContent() {
             <p className="text-gray-600 mb-8 leading-relaxed">
                 Thank you for choosing Aura Sentiments. Your order has been placed successfully and is now being processed. We have sent a confirmation email with all the details to your inbox.
             </p>
+
+
 
             {whatsappUrl && (
                 <div className="mb-8">

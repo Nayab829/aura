@@ -27,15 +27,15 @@ export default function Footer() {
           <ul className="space-y-4">
             <li className="flex items-center gap-4 text-white/50 text-[0.95rem]">
               <span className="text-[#fdb61b]">📞</span>
-              <a href="tel:+923001234567" className="hover:text-[#fdb61b] transition-colors">+92 300 123 4567</a>
+              <a href={`tel:+${process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_NUMBER || "923360303003"}`} className="hover:text-[#fdb61b] transition-colors">+{process.env.NEXT_PUBLIC_ADMIN_WHATSAPP_NUMBER || "923360303003"}</a>
             </li>
             <li className="flex items-center gap-4 text-white/50 text-[0.95rem]">
               <span className="text-[#fdb61b]">✉</span>
-              <a href="mailto:info@aurasentimentspakistan.com" className="hover:text-[#fdb61b] transition-colors">info@aurasentimentspakistan.com</a>
+              <a href={`mailto:${process.env.NEXT_PUBLIC_ADMIN_EMAIL || "aurasentiments@gmail.com"}`} className="hover:text-[#fdb61b] transition-colors">{process.env.NEXT_PUBLIC_ADMIN_EMAIL || "aurasentiments@gmail.com"}</a>
             </li>
             <li className="flex items-center gap-4 text-white/50 text-[0.95rem]">
               <span className="text-[#fdb61b]">📍</span>
-              <span>Shop 12, Anarkali Bazaar, Lahore</span>
+              <span>Main Dira Chock Dagai swabi</span>
             </li>
           </ul>
         </div>

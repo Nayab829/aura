@@ -272,7 +272,7 @@ export default function Home() {
             </button>
           </div>
           <div className="hidden md:block overflow-hidden rounded-[20px] shadow-2xl">
-            <Image src="/images/product-collection.png" alt="Premium Gift Sets" width={600} height={400} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            <Image src="/images/products/9 Testers Main.jpg" alt="Premium Gift Sets" width={600} height={400} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
           </div>
         </div>
       </section>
